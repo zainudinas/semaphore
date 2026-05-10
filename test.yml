@@ -1,7 +1,7 @@
 # playbook: setup-auto-updates-ubuntu.yml
 
 # Configure automatic security updates on Ubuntu/Debian systems
-- hosts: ubuntu_servers
+- hosts: demoserver
   become: true
 
   tasks:
