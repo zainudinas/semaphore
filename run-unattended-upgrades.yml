@@ -1,0 +1,16 @@
+# playbook: run-unattended-upgrades.yml
+
+- hosts: demoserver
+  become: true
+
+  tasks:
+    - name: Check if unattended-upgrades is installed
+      ansible.builtin.stat:
+        path: /usr/bin/unattended-upgrade
+        register: u_upgrade_bin
+      
+    - name: Run unattended-upgrades if found
+      ansible.builtin.command: unattended-upgrade -v
+      when: u_upgrade_bin.stat.exists
+      register: upgrade_result
+      changed_when: "'No packages found that can be upgraded' not in upgrade_result.stderr"
