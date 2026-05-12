@@ -1,6 +1,6 @@
 # playbook: run-unattended-upgrades.yml
 
-- hosts: demoserver
+- hosts: all
   become: true
 
   tasks:
